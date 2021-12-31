@@ -1,0 +1,31 @@
+---
+
+
+    - name: collecting server puv ip
+      uri:
+        url: http://169.254.169.254/latest/meta-data/public-ipv4
+        return_content: yes
+      register: myip
+    - set_fact: pubip='{{myip.content}}'
+
+    - name: Installing apache
+      yum:
+       name: httpd
+       state: latest
+    - name: Enable httpd at boot time
+      systemd:
+       name: httpd
+       enabled: yes
+
+    - name: modifying httpd.conf file
+      replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^#ServerName www.example.com'
+        replace: 'ServerName {{pubip}}'
+      notify: apache restart
+
+    - name: copying index.html
+      copy:
+       src: index.html
+       dest: /var/www/html/
+      notify: apache restart

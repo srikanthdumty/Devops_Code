@@ -1,0 +1,6 @@
+---
+
+- name: working with roles
+  hosts: server2
+  roles:
+    - apache

@@ -1,0 +1,12 @@
+---
+
+- name: working with modules
+  hosts: server1
+  tasks: 
+    - name: working with script
+      script: ./mycode.py
+      register: myoutput
+
+      # - debug: msg="{{myoutput.stdout_lines[2]}}" 
+
+    - set_fact: mydata="{{myoutput.stdout_lines[2]}}"  

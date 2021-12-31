@@ -1,0 +1,30 @@
+---
+
+- name: Install the MaiaDB-erver
+  yum:
+    name: MariaDB-server
+    state: latest
+
+ - name: enable mariadb service
+systemd:
+    name: mariadb
+    enabled: yes
+
+
+ - name: start mariadb service
+systemd:
+   name: mariadb
+   state: started
+
+- name : create admin user with password
+mysql_user:
+    name: "{{DB_USER}}"
+    password: "{{DB_PASSWORD}}"
+    host: localhost
+    priv: '*.*:ALL'
+    state: present  
+
+- name: create database
+mysql_db:
+    name: "{{DB_NAME}}"
+    state: present

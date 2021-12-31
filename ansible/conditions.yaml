@@ -1,0 +1,8 @@
+---
+
+- name: working with ansible conditions
+  hosts: server1
+  tasks: 
+    - name: working with == operator
+      command: echo "Hi I am == operator"
+      when: ansible_distribution == "Amazon" and ansible_os_family == "redhat"

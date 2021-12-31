@@ -1,0 +1,16 @@
+---
+- name: working with module
+  hosts: all
+  tasks:
+    - name: copy host file
+      copy:
+        src: /etc/hosts
+        dest: /etc/hosts
+    - name: using shell module
+      shell: uptime;hostname -I
+    - name: working with file modules
+      file:
+        path: /tmp/example.txt
+        state: touch
+        owner: ec2-user
+        group: ec2-user

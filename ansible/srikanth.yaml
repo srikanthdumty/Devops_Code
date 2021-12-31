@@ -1,0 +1,9 @@
+---
+
+- name: consuing valut
+  hosts: all
+  vars_files: 
+     - test.yaml
+  tasks:
+          - name: consuming user and pass
+            command: echo "user ->{{username}} pass word {{password}}

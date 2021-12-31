@@ -1,0 +1,23 @@
+---
+- name: working with ansible vars
+  hosts: all
+  vars: 
+    var1: 20
+    name: "dvsbatch4"
+  vars_files:
+    - myvars.yaml
+  tasks:
+    - name: printing the values from vars section
+      command: echo "my var1 value is {{var1}} && My name is {{name}}"
+
+    - name: printing the values from a file
+      command: echo "My file myvars.yaml variables are {{batchno}} && {{servername}}"
+
+
+    - name: my host specific values are
+      command: echo "my server version is {{version}}"
+
+
+    - name: my group sepeciic values are
+      command: echo " my current subject is {{current_subj}}"
+

@@ -1,0 +1,11 @@
+---
+- name:  working with ansible
+  hosts: all
+  tasks:
+   - name: check the system uptime
+     command: uptime
+- name: working with another files
+  hosts: server1
+  tasks:
+    - name: chack the system downtime
+      command: uptime
